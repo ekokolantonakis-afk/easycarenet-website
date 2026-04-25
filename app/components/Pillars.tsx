@@ -1,89 +1,84 @@
-import Reveal from "./Reveal";
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  ShieldCheck,
+  Users,
+  Boxes,
+  Sparkles,
+  KeyRound,
+} from "lucide-react";
+import SectionTitle from "./SectionTitle";
 
 const pillars = [
   {
-    num: "01",
+    icon: ShieldCheck,
     title: "Total Visibility. Absolute Control.",
-    body: "Complete command over your processes and data with secure, intelligent systems built for clarity and confidence.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2L4 5v7c0 5 3.5 8 8 10 4.5-2 8-5 8-10V5z" />
-        <path d="M8 13l2 2 4-4" />
-      </svg>
-    ),
+    body:
+      "Complete transparency across your systems and data — enabling precise, confident decision-making at every level.",
   },
   {
-    num: "02",
+    icon: Users,
     title: "Integrated Partnership.",
-    body: "We embed with your team, align to your goals, and build long-term partnerships that drive meaningful business outcomes.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="7" cy="9" r="3" />
-        <circle cx="17" cy="9" r="3" />
-        <path d="M5 20c0-3 4-4 7-4s7 1 7 4" />
-        <path d="M10 9c1 1 3 1 4 0" />
-      </svg>
-    ),
+    body:
+      "We embed with your team, align to your goals, and build long-term partnerships that drive measurable outcomes.",
   },
   {
-    num: "03",
+    icon: Boxes,
     title: "Reusable by Design. Scalable by Nature.",
-    body: "Modular solutions built to be reused, extended, and scaled — maximizing value and accelerating time to impact.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="8" height="8" rx="1.5" />
-        <rect x="13" y="3" width="8" height="8" rx="1.5" />
-        <rect x="8" y="13" width="8" height="8" rx="1.5" />
-      </svg>
-    ),
+    body:
+      "Solutions architected for reuse, extension, and evolution — eliminating redundancy and accelerating growth.",
   },
   {
-    num: "04",
+    icon: Sparkles,
     title: "Technology with Lasting Impact.",
-    body: "We invest in people, communities, and digital education to enable a smarter, more inclusive, future-ready society.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22V14" />
-        <circle cx="12" cy="8" r="4" />
-        <circle cx="6" cy="11" r="2.5" />
-        <circle cx="18" cy="11" r="2.5" />
-        <path d="M12 8v-4" />
-        <path d="M9 5l3-2 3 2" />
-      </svg>
-    ),
+    body:
+      "We invest in digital capability that enables organizations and communities to adapt, grow, and lead.",
   },
   {
-    num: "05",
-    title: "You Own It. We Empower It.",
-    body: "Solutions delivered with full rights and flexibility — you own, control, and evolve your systems without limitations.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-        <path d="M14 3v6h6" />
-        <path d="M9 14l2 2 4-4" />
-      </svg>
-    ),
+    icon: KeyRound,
+    title: "Ownership Without Limits.",
+    body:
+      "You retain full control of your systems — with the flexibility to adapt, expand, and operate independently.",
   },
 ];
 
 export default function Pillars() {
   return (
-    <section id="pillars">
-      <div className="container">
-        <Reveal className="sec-head">
-          <span className="eyebrow">The Foundation</span>
-          <h2>Five principles. One operating standard.</h2>
-          <p>Every system we build — from a single website to enterprise-grade AI infrastructure — is grounded in the same five commitments.</p>
-        </Reveal>
-        <div className="pillars">
-          {pillars.map((p) => (
-            <Reveal key={p.num} className="pillar">
-              <div className="num">{p.num}</div>
-              <div className="ic">{p.icon}</div>
-              <h3>{p.title}</h3>
-              <p>{p.body}</p>
-            </Reveal>
-          ))}
+    <section id="pillars" className="section">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionTitle
+          eyebrow="Our Principles"
+          title="What drives every system we build"
+          description="Five commitments that define how we deliver intelligent infrastructure — from first deployment to long-term evolution."
+        />
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+          {pillars.map((pillar, i) => {
+            const Icon = pillar.icon;
+            return (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="surface-card rounded-2xl p-6 flex flex-col group"
+              >
+                <div className="mb-5 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-core/20 to-brand-electric/10 border border-brand-electric/20 group-hover:border-brand-electric/50 transition-colors">
+                  <Icon className="w-5 h-5 text-brand-cyan" strokeWidth={1.8} />
+                </div>
+                <h3 className="text-base font-semibold text-white leading-snug mb-3">
+                  {pillar.title}
+                </h3>
+                <p className="text-sm text-steel leading-relaxed">{pillar.body}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

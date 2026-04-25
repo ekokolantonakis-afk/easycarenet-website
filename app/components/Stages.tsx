@@ -1,52 +1,164 @@
-import Reveal from "./Reveal";
+"use client";
+
+import { motion } from "framer-motion";
+import { Rocket, TrendingUp, Building2, Check } from "lucide-react";
+import SectionTitle from "./SectionTitle";
 
 const stages = [
   {
-    num: "01",
-    label: "Start",
-    title: "First systems, professionally done.",
-    summary: "Your first website, your first automation, your first AI agent. Get the basics right from day one — without the agency overhead.",
-    audience: "Clinics · restaurants · single-store retail · solo founders",
+    tier: "Start",
+    icon: Rocket,
+    accent: "from-emerald-400/20 to-brand-electric/10",
+    border: "border-emerald-400/30",
+    badge: "text-emerald-300",
+    range: "from €500",
+    headline: "Get online, get organized, get moving",
+    description:
+      "Perfect for small businesses launching their digital presence. Modern websites, essential automations, and practical tools that work from day one.",
+    features: [
+      "Modern business website",
+      "Simple booking & contact flows",
+      "Email / WhatsApp automation",
+      "Fast delivery — 7 to 14 days",
+    ],
   },
   {
-    num: "02",
-    label: "Grow",
-    title: "Connected operations.",
-    summary: "Expand to multi-channel commerce, integrate your existing stack, and train your first AI assistant on your own data.",
-    audience: "Distributors · regional chains · multi-location operators",
+    tier: "Grow",
+    icon: TrendingUp,
+    accent: "from-brand-core/25 to-brand-electric/15",
+    border: "border-brand-core/40",
+    badge: "text-brand-cyan",
+    range: "€1,500 – €5,000",
+    headline: "Connect your operations into one system",
+    description:
+      "For scaling companies ready to move past fragmented tools. Dashboards, integrations, and workflows that give your team real visibility and control.",
+    features: [
+      "Custom dashboards & client portals",
+      "Payment, CRM & data integrations",
+      "Workflow & process automation",
+      "Practical AI chatbots and assistants",
+    ],
+    featured: true,
   },
   {
-    num: "03",
-    label: "Scale",
-    title: "Operational AI infrastructure.",
-    summary: "Agent organizations, compound learning systems, and custom internal applications running the operating fabric of your business.",
-    audience: "Enterprise ops · holding companies · multi-entity groups",
+    tier: "Scale",
+    icon: Building2,
+    accent: "from-violet-400/20 to-brand-electric/10",
+    border: "border-violet-400/30",
+    badge: "text-violet-300",
+    range: "Custom",
+    headline: "Build the infrastructure your business runs on",
+    description:
+      "For advanced organizations that need custom platforms and intelligent systems. Deep AI integration, bespoke architecture, long-term evolution.",
+    features: [
+      "Custom platforms & applications",
+      "AI systems & decision engines",
+      "Enterprise-grade architecture",
+      "Ongoing partnership & evolution",
+    ],
   },
 ];
 
 export default function Stages() {
   return (
-    <section id="stages">
-      <div className="container">
-        <Reveal className="sec-head">
-          <span className="eyebrow">For every stage</span>
-          <h2>Start. Grow. Scale.<br />One partner across all three.</h2>
-          <p>Whether you&apos;re shipping your first website or running a multi-entity holding company, we meet you at the right altitude — and stay with you as you climb.</p>
-        </Reveal>
-        <div className="stages">
-          {stages.map((s) => (
-            <Reveal key={s.num} className="stage">
-              <div className="num-track">{s.num}</div>
-              <div className="label">{s.label}</div>
-              <h3>{s.title}</h3>
-              <p className="summary">{s.summary}</p>
-              <div className="audience">
-                <b>Built for</b>
-                {s.audience}
-              </div>
-            </Reveal>
-          ))}
+    <section id="stages" className="section">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionTitle
+          eyebrow="Built for Every Stage"
+          title="Start simple. Grow smart."
+          description="Whether you're launching your first website or scaling operational infrastructure — we meet you where you are, and build systems that grow with you."
+        />
+
+        <div className="grid gap-6 lg:grid-cols-3">
+          {stages.map((stage, i) => {
+            const Icon = stage.icon;
+            return (
+              <motion.div
+                key={stage.tier}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.12,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className={`relative surface-card rounded-3xl p-8 flex flex-col ${
+                  stage.featured ? "lg:scale-[1.03] shadow-glow" : ""
+                }`}
+              >
+                {stage.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-brand-core to-brand-electric text-[10px] font-semibold tracking-widest uppercase text-white shadow-glow">
+                    Most Popular
+                  </div>
+                )}
+
+                <div
+                  className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${stage.accent} border ${stage.border} mb-6`}
+                >
+                  <Icon className={`w-6 h-6 ${stage.badge}`} strokeWidth={1.7} />
+                </div>
+
+                <div className="flex items-baseline justify-between mb-2">
+                  <h3 className="text-3xl font-semibold font-display tracking-tight text-white">
+                    {stage.tier}
+                  </h3>
+                  <span className="text-sm text-steel font-mono">{stage.range}</span>
+                </div>
+
+                <p className="text-base text-white/90 leading-snug mb-4 font-medium">
+                  {stage.headline}
+                </p>
+
+                <p className="text-sm text-steel leading-relaxed mb-6">
+                  {stage.description}
+                </p>
+
+                <ul className="space-y-3 mb-8 flex-1">
+                  {stage.features.map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-start gap-3 text-sm text-white/80"
+                    >
+                      <span className="mt-0.5 inline-flex w-5 h-5 items-center justify-center rounded-full bg-brand-electric/15 border border-brand-electric/30 flex-shrink-0">
+                        <Check className="w-3 h-3 text-brand-cyan" strokeWidth={2.5} />
+                      </span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="#contact"
+                  className={`mt-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-sm font-medium transition-all ${
+                    stage.featured
+                      ? "btn-primary"
+                      : "btn-ghost"
+                  }`}
+                >
+                  <span>
+                    {stage.featured
+                      ? "Start Growing"
+                      : stage.tier === "Start"
+                      ? "Get Started"
+                      : "Talk to Us"}
+                  </span>
+                </a>
+              </motion.div>
+            );
+          })}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center text-xs text-steel/70 mt-10 max-w-2xl mx-auto"
+        >
+          Every engagement includes a Care Plan option (from €50/month) for hosting, updates,
+          and ongoing support — plus Growth Plans for continuous automation and AI optimization.
+        </motion.p>
       </div>
     </section>
   );

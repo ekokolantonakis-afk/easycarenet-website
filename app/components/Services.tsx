@@ -1,86 +1,127 @@
-import Reveal from "./Reveal";
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Brain,
+  Globe,
+  Smartphone,
+  Workflow,
+  Database,
+  Network,
+} from "lucide-react";
+import SectionTitle from "./SectionTitle";
 
 const services = [
   {
-    title: "AI Systems & Agents",
-    body: "Autonomous agents, retrieval-augmented copilots, and internal assistants grounded in your business data.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" />
-      </svg>
-    ),
+    icon: Brain,
+    title: "AI Systems",
+    description:
+      "Practical, embedded intelligence. Chatbots, decision engines, adaptive workflows, and internal AI assistants that deliver real business value — not buzzwords.",
+    tags: ["Chatbots", "Assistants", "Automation"],
   },
   {
-    title: "Web Platforms",
-    body: "Marketing sites, e-commerce, and B2B portals engineered for speed, SEO, and conversion.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="20" height="14" rx="2" />
-        <path d="M2 9h20M6 14h4" />
-      </svg>
-    ),
+    icon: Globe,
+    title: "Websites & Web Platforms",
+    description:
+      "Fast, modern, conversion-focused websites and web applications. Built for speed, accessibility, and long-term flexibility — never locked to one vendor.",
+    tags: ["Next.js", "WordPress", "Shopify"],
   },
   {
-    title: "Custom Applications",
-    body: "Internal tools, operational dashboards, and mobile apps built around how your team actually works.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="5" y="2" width="14" height="20" rx="2" />
-        <path d="M9 18h6" />
-      </svg>
-    ),
+    icon: Smartphone,
+    title: "Mobile & Web Apps",
+    description:
+      "Custom applications for your team and your customers. Booking, ordering, loyalty, client portals — everything your business needs in one place.",
+    tags: ["iOS", "Android", "PWA"],
   },
   {
+    icon: Workflow,
     title: "Process Automation",
-    body: "Custom workflow engines that replace duct-taped Zapier chains — with versioning, replay, and observability.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="6" cy="6" r="3" />
-        <circle cx="18" cy="18" r="3" />
-        <path d="M9 6h6a3 3 0 0 1 3 3v6" />
-      </svg>
-    ),
+    description:
+      "Turn repetitive work into automated flows. Connect your tools, automate bookings and messaging, remove manual errors — save real hours every week.",
+    tags: ["n8n", "Zapier", "Custom"],
   },
   {
-    title: "Data & Intelligence",
-    body: "Pipelines, BI surfaces, and predictive models that turn operational telemetry into decisions.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 17l6-6 4 4 8-9" />
-        <path d="M21 6V3M21 6h-3" />
-      </svg>
-    ),
+    icon: Database,
+    title: "Data Infrastructure",
+    description:
+      "Structured, secure, actionable data. Dashboards, reporting, and pipelines that turn scattered information into clear operational visibility.",
+    tags: ["Dashboards", "ETL", "BI"],
   },
   {
-    title: "Integrations",
-    body: "ERP, CRM, accounting, logistics — connected with typed schemas, retries, and an audit trail.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M10 14a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5" />
-        <path d="M14 10a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.5-1.5" />
-      </svg>
-    ),
+    icon: Network,
+    title: "Integration Architecture",
+    description:
+      "Connect everything — payments, CRM, inventory, communication. One unified operational ecosystem that replaces fragmented tools with real system thinking.",
+    tags: ["APIs", "Webhooks", "Orchestration"],
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services">
-      <div className="container">
-        <Reveal className="sec-head">
-          <span className="eyebrow">What we build</span>
-          <h2>Six disciplines. One delivery model.</h2>
-          <p>Every engagement draws on the same modular foundation, so the work compounds — your second project always builds on your first.</p>
-        </Reveal>
-        <div className="svc-grid">
-          {services.map((s) => (
-            <Reveal key={s.title} className="svc">
-              <div className="ic">{s.icon}</div>
-              <h3>{s.title}</h3>
-              <p>{s.body}</p>
-            </Reveal>
-          ))}
+    <section
+      id="services"
+      className="section relative"
+      style={{
+        background:
+          "linear-gradient(180deg, transparent 0%, rgba(10, 36, 57, 0.4) 50%, transparent 100%)",
+      }}
+    >
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionTitle
+          eyebrow="What We Build"
+          title="Systems for every part of your business"
+          description="Six connected disciplines — delivered as one cohesive architecture. Start with what you need today, expand into a full intelligent system over time."
+        />
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: (i % 3) * 0.1,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="surface-card rounded-2xl p-7 flex flex-col group relative overflow-hidden"
+              >
+                {/* Decorative gradient corner */}
+                <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-brand-core/10 blur-2xl group-hover:bg-brand-electric/15 transition-all duration-700" />
+
+                <div className="relative">
+                  <div className="mb-5 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-core/15 to-transparent border border-brand-electric/20 group-hover:border-brand-electric/50 transition-colors">
+                    <Icon
+                      className="w-5 h-5 text-brand-cyan"
+                      strokeWidth={1.7}
+                    />
+                  </div>
+
+                  <h3 className="text-xl font-semibold text-white mb-3 tracking-tight">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-sm text-steel leading-relaxed mb-5">
+                    {service.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] font-medium tracking-wide px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/5 text-steel"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
