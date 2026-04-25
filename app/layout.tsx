@@ -11,22 +11,22 @@ const inter = Inter({
 
 const sora = Sora({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
   variable: "--font-sora",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://easycarenet.com"),
-  title: "easycarenet — Intelligent Systems, Applications & Automation",
+  title: "easycarenet — Engineered for Control. Built to Evolve.",
   description:
-    "Engineered for Control. Built to Evolve. We design and deploy AI systems, websites, apps, and automation for businesses at every stage.",
+    "easycarenet builds owned business infrastructure — systems, apps, automations, and AI agents that clients control. AI-native. Enterprise-grade. Owned by you, not rented.",
   keywords: [
     "AI systems",
     "business automation",
     "custom software",
     "intelligent systems",
-    "digital transformation",
+    "owned infrastructure",
     "easycarenet",
   ],
   icons: {
@@ -34,17 +34,17 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    title: "easycarenet — Intelligent Systems, Applications & Automation",
+    title: "easycarenet — Engineered for Control. Built to Evolve.",
     description:
-      "Engineered for Control. Built to Evolve. AI systems, websites, apps, and automation for businesses at every stage.",
+      "Owned business infrastructure — systems, apps, automations, and AI agents that you control.",
     type: "website",
     url: "https://easycarenet.com",
     images: [{ url: "/og-pillars.png", width: 1536, height: 1024, alt: "easycarenet — IT Solutions & Services Group" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "easycarenet — Intelligent Systems, Applications & Automation",
-    description: "Engineered for Control. Built to Evolve.",
+    title: "easycarenet — Engineered for Control. Built to Evolve.",
+    description: "Owned business infrastructure. AI-native. Enterprise-grade.",
     images: ["/og-pillars.png"],
   },
 };
@@ -55,11 +55,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body className="font-sans antialiased">
-        <div className="grid-overlay" />
-        {children}
-      </body>
+    <html lang="en" data-theme="dark" className={`${inter.variable} ${sora.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

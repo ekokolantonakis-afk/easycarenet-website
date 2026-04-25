@@ -1,144 +1,76 @@
-"use client";
+import Reveal from "./Reveal";
 
-import { motion } from "framer-motion";
-import {
-  UtensilsCrossed,
-  Stethoscope,
-  ShoppingBag,
-  Briefcase,
-  Building,
-} from "lucide-react";
-import SectionTitle from "./SectionTitle";
-
-const useCases = [
+const cases = [
   {
-    icon: UtensilsCrossed,
-    industry: "Restaurants & Cafés",
-    headline: "From manual service to automated operations",
-    outcomes: [
-      "QR menu & ordering (scanorderpay.ai)",
-      "Table-side payments",
-      "Kitchen & inventory sync",
-      "Customer loyalty built in",
-    ],
-    result: "Faster service, fewer mistakes, higher ticket value",
+    title: "Restaurants",
+    proof: "POS, ordering, kitchen operations, and loyalty in a single owned stack.",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 11h18l-2 9H5z" />
+        <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+      </svg>
+    ),
   },
   {
-    icon: Stethoscope,
-    industry: "Clinics & Services",
-    headline: "From chaos to structured client systems",
-    outcomes: [
-      "Online booking & reminders",
-      "Client database & records",
-      "AI assistant for inquiries",
-      "Automated follow-up flows",
-    ],
-    result: "Zero missed appointments, better client experience",
+    title: "Clinics",
+    proof: "Patient flow, records, reminders, and reporting — with audit-ready privacy controls.",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2v20M2 12h20" />
+      </svg>
+    ),
   },
   {
-    icon: ShoppingBag,
-    industry: "Retail & E-commerce",
-    headline: "From disconnected tools to one unified view",
-    outcomes: [
-      "Website + inventory tracking",
-      "Payment integration",
-      "Customer engagement (bonuscard.ai)",
-      "Automated order workflows",
-    ],
-    result: "Full visibility, repeat customers, scalable growth",
+    title: "Retail",
+    proof: "Inventory, multi-store sync, e-commerce, and loyalty on one operating fabric.",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 7l9-4 9 4-9 4-9-4z" />
+        <path d="M3 12l9 4 9-4M3 17l9 4 9-4" />
+      </svg>
+    ),
   },
   {
-    icon: Briefcase,
-    industry: "Agencies & Freelancers",
-    headline: "From manual admin to client systems",
-    outcomes: [
-      "Client portal & project tracking",
-      "Automated invoicing",
-      "Proposal & contract flows",
-      "Unified communication hub",
-    ],
-    result: "Professional presence, faster closes, lower admin",
+    title: "Distribution",
+    proof: "Pricing, logistics, credit, and B2B portals — with live visibility from order to delivery.",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="6" width="14" height="12" rx="1" />
+        <path d="M16 10h4l2 4v4h-6z" />
+        <circle cx="6" cy="20" r="2" />
+        <circle cx="18" cy="20" r="2" />
+      </svg>
+    ),
   },
   {
-    icon: Building,
-    industry: "Growing Companies",
-    headline: "From tools to infrastructure",
-    outcomes: [
-      "Custom operational dashboards",
-      "Deep system integrations",
-      "AI-powered process automation",
-      "Data pipelines & reporting",
-    ],
-    result: "Scalable operations, clear visibility at every level",
+    title: "Services",
+    proof: "Booking, CRM, proposals, and project ops in one connected operator surface.",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M3 10h18M8 4v4M16 4v4" />
+      </svg>
+    ),
   },
 ];
 
 export default function UseCases() {
   return (
-    <section id="use-cases" className="section">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionTitle
-          eyebrow="How We Help"
-          title="Real systems. Real businesses. Real outcomes."
-          description="We don't sell generic software. We build systems tailored to how your industry actually works — and deploy them fast."
-        />
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {useCases.map((uc, i) => {
-            const Icon = uc.icon;
-            return (
-              <motion.article
-                key={uc.industry}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: (i % 3) * 0.1,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="surface-card rounded-2xl p-7 flex flex-col"
-              >
-                <div className="flex items-start gap-4 mb-5">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-core/20 to-brand-electric/10 border border-brand-electric/20 flex-shrink-0">
-                    <Icon
-                      className="w-5 h-5 text-brand-cyan"
-                      strokeWidth={1.7}
-                    />
-                  </div>
-                  <div>
-                    <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-cyan mb-1">
-                      {uc.industry}
-                    </div>
-                    <h3 className="text-lg font-semibold text-white leading-snug">
-                      {uc.headline}
-                    </h3>
-                  </div>
-                </div>
-
-                <ul className="space-y-2 mb-5 flex-1">
-                  {uc.outcomes.map((o) => (
-                    <li
-                      key={o}
-                      className="flex items-start gap-2 text-sm text-steel"
-                    >
-                      <span className="mt-1.5 w-1 h-1 rounded-full bg-brand-electric flex-shrink-0" />
-                      <span>{o}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="pt-4 border-t border-white/5">
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-steel/60 mb-1.5">
-                    Result
-                  </div>
-                  <p className="text-sm text-white/90 leading-snug">
-                    {uc.result}
-                  </p>
-                </div>
-              </motion.article>
-            );
-          })}
+    <section id="usecases">
+      <div className="container">
+        <Reveal className="sec-head">
+          <span className="eyebrow">Use cases</span>
+          <h2>Five industries. The same operating playbook.</h2>
+          <p>Different vocabulary, same patterns: capture the work, automate the routine, surface the exceptions, give the operator control.</p>
+        </Reveal>
+        <div className="uc-grid">
+          {cases.map((c) => (
+            <Reveal key={c.title} className="uc">
+              <div className="ic">{c.icon}</div>
+              <h3>{c.title}</h3>
+              <p className="proof">{c.proof}</p>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
